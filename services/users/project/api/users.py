@@ -18,6 +18,16 @@ class UsersPing(Resource):
 
 
 class UsersList(Resource):
+    def get(self):
+        """Get all users"""
+        response_object = {
+            'status': 'success',
+            'data': {
+                'users': [user.to_json() for user in User.query.all()]
+            }
+        }
+        return response_object, 200
+
     def post(self):
         post_data = request.get_json()
         response_object = {
