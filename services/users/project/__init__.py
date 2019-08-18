@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 # Configure Database
 db = SQLAlchemy()
 
+
 def create_app(script_info=None):
     app = Flask(__name__)
 
@@ -25,8 +26,3 @@ def create_app(script_info=None):
         return {'app': app, 'db': db}
 
     return app
-
-
-
-
-
