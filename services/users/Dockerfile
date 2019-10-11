@@ -1,11 +1,10 @@
-FROM python:3.7.2-alpine
+FROM python:3.7.2-slim
 
 
 # Install deps
-RUN apk update && \
-    apk add --virtual build-deps gcc python-dev musl-dev && \
-    apk add postgresql-dev && \
-    apk add netcat-openbsd
+RUN apt-get update && \
+    apt-get -y install netcat && \
+    apt-get clean
 
 # Change work dir
 WORKDIR /usr/src/app
