@@ -55,7 +55,9 @@ class UsersList(Resource):
         try:
             user = User.query.filter_by(email=email).first()
             if not user:
-                db.session.add(User(username=username, email=email, password=password))
+                db.session.add(User(
+                    username=username, email=email, password=password
+                ))
                 db.session.commit()
                 response_object['status'] = 'success'
                 response_object['message'] = f'{email} was added!'
@@ -96,6 +98,8 @@ class Users(Resource):
                 return response_object, 200
         except exc.DataError:
             return response_object, 404
+
+
 
 
 api.add_resource(UsersPing, '/users/ping')

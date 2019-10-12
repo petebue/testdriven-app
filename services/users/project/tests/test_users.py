@@ -53,7 +53,10 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/users',
-                data=json.dumps({'email': 'michael@mherman.org', 'password': 'greaterthaneight'}),
+                data=json.dumps({
+                    'email': 'michael@mherman.org',
+                    'password': 'greaterthaneight'
+                }),
                 content_type='application/json'
             )
             data = json.loads(response.data.decode())
@@ -154,7 +157,11 @@ class TestUserService(BaseTestCase):
         the database
         """
         add_user('hannibal', 'hlecter@greattaste.com', 'greaterthaneight')
-        add_user('pennywise', 'pennywise@thedancingclown.com', 'greaterthaneight')
+        add_user(
+            'pennywise',
+            'pennywise@thedancingclown.com',
+            'greaterthaneight'
+        )
         with self.client:
             response = self.client.get('/')
             self.assertEqual(response.status_code, 200)
@@ -168,7 +175,11 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='hannibal', email='hlecter@greattaste.com', password='greaterthaneight'),
+                data=dict(
+                    username='hannibal',
+                    email='hlecter@greattaste.com',
+                    password='greaterthaneight'
+                ),
                 follow_redirects=True
             )
             self.assertEqual(response.status_code, 200)
@@ -177,7 +188,9 @@ class TestUserService(BaseTestCase):
             self.assertIn(b'hannibal', response.data)
 
     def test_add_user_invalid_json_keys_no_password(self):
-        """Ensure error is thrown if the JSON object does not have a password key."""
+        """
+        Ensure error is thrown if the JSON object does not have a password key.
+        """
         with self.client:
             response = self.client.post(
                 '/users',
