@@ -6,6 +6,7 @@ from project import db, bcrypt
 
 auth_blueprint = Blueprint('auth', __name__)
 
+
 @auth_blueprint.route('/auth/register', methods=['POST'])
 def register_user():
     # get post data

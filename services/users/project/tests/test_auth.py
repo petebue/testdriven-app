@@ -77,7 +77,7 @@ class TestAuthBlueprint(BaseTestCase):
 
     def test_user_registration_invalid_json_keys_no_username(self):
         with self.client:
-            response=self.client.post(
+            response = self.client.post(
                 '/auth/register',
                 data=json.dumps({
                     'email': 'test@test.com',

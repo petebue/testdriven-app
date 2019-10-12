@@ -100,8 +100,6 @@ class Users(Resource):
             return response_object, 404
 
 
-
-
 api.add_resource(UsersPing, '/users/ping')
 api.add_resource(UsersList, '/users')
 api.add_resource(Users, '/users/<user_id>')
